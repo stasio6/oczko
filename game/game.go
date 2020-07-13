@@ -57,19 +57,25 @@ type Game struct {
 	deck             Deck
 	player1, player2 Player
 	player1Turn      bool
+	started 		 bool
 }
 
 func NewGame() Game {
-	game := Game{newDeck(), newPlayer(1, "Player 1"), newPlayer(2, "Player 2"), true}
-	drawCard(&game.player1, &game.deck)
-	drawCard(&game.player2, &game.deck)
-	drawCard(&game.player1, &game.deck)
-	drawCard(&game.player2, &game.deck)
+	game := Game{newDeck(), newPlayer(-1, "Player 1"),
+		newPlayer(-1, "Player 2"), true, false}
 	return game
 }
 
 func drawCard(player *Player, deck *Deck) {
 	player.cards = append(player.cards, deck.draw())
+}
+
+func (game *Game) startGame() {
+	drawCard(&game.player1, &game.deck)
+	drawCard(&game.player2, &game.deck)
+	drawCard(&game.player1, &game.deck)
+	drawCard(&game.player2, &game.deck)
+	game.started = true
 }
 
 func (game *Game) belongsToGame(playerId int) bool {
@@ -85,6 +91,18 @@ func (game *Game) nextTurn() {
 	game.player1Turn = !game.player1Turn
 }
 
+func (game *Game) JoinGame(playerName string, playerId int) bool {
+	if game.player1.id == -1 {
+		game.player1 = newPlayer(playerId, playerName)
+	} else if game.player2.id == -1 {
+		game.player2 = newPlayer(playerId, playerName)
+		game.startGame()
+	} else {
+		return false
+	}
+	return true
+}
+
 // status types
 // 0 - your turn
 // 1 - opponent's turn
@@ -92,8 +110,11 @@ func (game *Game) nextTurn() {
 // 3 - error
 func (game *Game) GetStatus(playerId int) (string, int) {
 	if !game.belongsToGame(playerId) {
-		panic("ERRORRO")
+		// panic("ERRORRO")
 		return "Player doesn't belong to this game\n", 3
+	}
+	if !game.started {
+		return "Waiting for other players to join and the game to start\n", 1
 	}
 	if game.player1.passed && game.player2.passed {
 		return game.endGame(), 2
@@ -102,6 +123,7 @@ func (game *Game) GetStatus(playerId int) (string, int) {
 		// send wait response
 		return "Waiting for opponent's turn", 1
 	}
+	fmt.Print(game.player1, game.player2, game.player1Turn, playerId)
 	var playerMoving *Player
 	var secondPlayer *Player
 	response := ""
@@ -114,7 +136,7 @@ func (game *Game) GetStatus(playerId int) (string, int) {
 		secondPlayer = &game.player1
 		response += game.player2.name + " turn:\n"
 	}
-	if playerMoving.passed {
+	if playerMoving.passed && playerMoving.id == playerId {
 		response += "You already passed!\n"
 		game.nextTurn()
 		return response, 1
@@ -129,15 +151,18 @@ func (game *Game) GetStatus(playerId int) (string, int) {
 
 func (game *Game) MakeMove(playerId int, move string) string {
 	if !game.belongsToGame(playerId) {
-		panic("ERRORRO")
-		return "ERRORRO"
+		//panic("ERRORRO")
+		return "Player doesn't belong to this game\n"
+	}
+	if !game.started {
+		return "Waiting for other players to join and the game to start\n"
 	}
 	if !game.isYourTurn(playerId) {
-		panic("Not your turn")
-		return "NOT YOUR TURN"
+		//panic("Not your turn")
+		return "NOT YOUR TURN\n"
 	}
 	playerMoving := &game.player1
-	if playerId == game.player2.id {
+	if !game.player1Turn {
 		playerMoving = &game.player2
 	}
 	response := ""
@@ -149,14 +174,14 @@ func (game *Game) MakeMove(playerId int, move string) string {
 			response += "From now you are forced to pass\n"
 			playerMoving.passed = true
 		}
-		game.nextTurn()
 	} else if move == "pass" {
 		response = "You passed"
 		playerMoving.passed = true
-		game.nextTurn()
 	} else {
-		panic("Bad response")
+		//panic("Bad response")
+		return "Bad response"
 	}
+	game.nextTurn()
 	return response
 }
 

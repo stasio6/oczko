@@ -125,6 +125,110 @@ func (x *ActionReply) GetWinner() string {
 	return ""
 }
 
+// The control message containing the action.
+type JoinRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	PlayerName string `protobuf:"bytes,1,opt,name=playerName,proto3" json:"playerName,omitempty"`
+	PlayerID   int32  `protobuf:"varint,2,opt,name=playerID,proto3" json:"playerID,omitempty"`
+}
+
+func (x *JoinRequest) Reset() {
+	*x = JoinRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_communication_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *JoinRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*JoinRequest) ProtoMessage() {}
+
+func (x *JoinRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_communication_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use JoinRequest.ProtoReflect.Descriptor instead.
+func (*JoinRequest) Descriptor() ([]byte, []int) {
+	return file_communication_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *JoinRequest) GetPlayerName() string {
+	if x != nil {
+		return x.PlayerName
+	}
+	return ""
+}
+
+func (x *JoinRequest) GetPlayerID() int32 {
+	if x != nil {
+		return x.PlayerID
+	}
+	return 0
+}
+
+// The response message containing the greetings.
+type JoinReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Success bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+}
+
+func (x *JoinReply) Reset() {
+	*x = JoinReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_communication_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *JoinReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*JoinReply) ProtoMessage() {}
+
+func (x *JoinReply) ProtoReflect() protoreflect.Message {
+	mi := &file_communication_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use JoinReply.ProtoReflect.Descriptor instead.
+func (*JoinReply) Descriptor() ([]byte, []int) {
+	return file_communication_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *JoinReply) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
 // The message requesting status.
 type StatusRequest struct {
 	state         protoimpl.MessageState
@@ -137,7 +241,7 @@ type StatusRequest struct {
 func (x *StatusRequest) Reset() {
 	*x = StatusRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_communication_proto_msgTypes[2]
+		mi := &file_communication_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -150,7 +254,7 @@ func (x *StatusRequest) String() string {
 func (*StatusRequest) ProtoMessage() {}
 
 func (x *StatusRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_communication_proto_msgTypes[2]
+	mi := &file_communication_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -163,7 +267,7 @@ func (x *StatusRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StatusRequest.ProtoReflect.Descriptor instead.
 func (*StatusRequest) Descriptor() ([]byte, []int) {
-	return file_communication_proto_rawDescGZIP(), []int{2}
+	return file_communication_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *StatusRequest) GetPlayerID() int32 {
@@ -186,7 +290,7 @@ type StatusReply struct {
 func (x *StatusReply) Reset() {
 	*x = StatusReply{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_communication_proto_msgTypes[3]
+		mi := &file_communication_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -199,7 +303,7 @@ func (x *StatusReply) String() string {
 func (*StatusReply) ProtoMessage() {}
 
 func (x *StatusReply) ProtoReflect() protoreflect.Message {
-	mi := &file_communication_proto_msgTypes[3]
+	mi := &file_communication_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -212,7 +316,7 @@ func (x *StatusReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StatusReply.ProtoReflect.Descriptor instead.
 func (*StatusReply) Descriptor() ([]byte, []int) {
-	return file_communication_proto_rawDescGZIP(), []int{3}
+	return file_communication_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *StatusReply) GetStatus() string {
@@ -242,7 +346,7 @@ type MoveRequest struct {
 func (x *MoveRequest) Reset() {
 	*x = MoveRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_communication_proto_msgTypes[4]
+		mi := &file_communication_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -255,7 +359,7 @@ func (x *MoveRequest) String() string {
 func (*MoveRequest) ProtoMessage() {}
 
 func (x *MoveRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_communication_proto_msgTypes[4]
+	mi := &file_communication_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -268,7 +372,7 @@ func (x *MoveRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MoveRequest.ProtoReflect.Descriptor instead.
 func (*MoveRequest) Descriptor() ([]byte, []int) {
-	return file_communication_proto_rawDescGZIP(), []int{4}
+	return file_communication_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *MoveRequest) GetPlayerID() int32 {
@@ -298,7 +402,7 @@ type MoveReply struct {
 func (x *MoveReply) Reset() {
 	*x = MoveReply{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_communication_proto_msgTypes[5]
+		mi := &file_communication_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -311,7 +415,7 @@ func (x *MoveReply) String() string {
 func (*MoveReply) ProtoMessage() {}
 
 func (x *MoveReply) ProtoReflect() protoreflect.Message {
-	mi := &file_communication_proto_msgTypes[5]
+	mi := &file_communication_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -324,7 +428,7 @@ func (x *MoveReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MoveReply.ProtoReflect.Descriptor instead.
 func (*MoveReply) Descriptor() ([]byte, []int) {
-	return file_communication_proto_rawDescGZIP(), []int{5}
+	return file_communication_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *MoveReply) GetSuccess() bool {
@@ -350,32 +454,42 @@ var file_communication_proto_rawDesc = []byte{
 	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x25,
 	0x0a, 0x0b, 0x41, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x16, 0x0a,
 	0x06, 0x77, 0x69, 0x6e, 0x6e, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x77,
-	0x69, 0x6e, 0x6e, 0x65, 0x72, 0x22, 0x2b, 0x0a, 0x0d, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x6c, 0x61, 0x79, 0x65, 0x72,
-	0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x08, 0x70, 0x6c, 0x61, 0x79, 0x65, 0x72,
-	0x49, 0x44, 0x22, 0x39, 0x0a, 0x0b, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x70, 0x6c,
-	0x79, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70,
-	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x3d, 0x0a,
-	0x0b, 0x4d, 0x6f, 0x76, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08,
-	0x70, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x08,
-	0x70, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x49, 0x44, 0x12, 0x12, 0x0a, 0x04, 0x6d, 0x6f, 0x76, 0x65,
-	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6d, 0x6f, 0x76, 0x65, 0x22, 0x3f, 0x0a, 0x09,
-	0x4d, 0x6f, 0x76, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x18, 0x0a, 0x07, 0x73, 0x75, 0x63,
-	0x63, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x73, 0x75, 0x63, 0x63,
-	0x65, 0x73, 0x73, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x32, 0x8d, 0x01,
-	0x0a, 0x06, 0x53, 0x69, 0x67, 0x6e, 0x61, 0x6c, 0x12, 0x2c, 0x0a, 0x0a, 0x4d, 0x61, 0x6b, 0x65,
-	0x41, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x0e, 0x2e, 0x41, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0c, 0x2e, 0x41, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x52,
-	0x65, 0x70, 0x6c, 0x79, 0x22, 0x00, 0x12, 0x2d, 0x0a, 0x0b, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x53,
-	0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x0e, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0c, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65,
-	0x70, 0x6c, 0x79, 0x22, 0x00, 0x12, 0x26, 0x0a, 0x08, 0x4d, 0x61, 0x6b, 0x65, 0x4d, 0x6f, 0x76,
-	0x65, 0x12, 0x0c, 0x2e, 0x4d, 0x6f, 0x76, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x0a, 0x2e, 0x4d, 0x6f, 0x76, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x00, 0x42, 0x11, 0x5a,
-	0x0f, 0x2e, 0x3b, 0x63, 0x6f, 0x6d, 0x6d, 0x75, 0x6e, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x69, 0x6e, 0x6e, 0x65, 0x72, 0x22, 0x49, 0x0a, 0x0b, 0x4a, 0x6f, 0x69, 0x6e, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x70, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x4e, 0x61,
+	0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x70, 0x6c, 0x61, 0x79, 0x65, 0x72,
+	0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x49, 0x44,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x08, 0x70, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x49, 0x44,
+	0x22, 0x25, 0x0a, 0x09, 0x4a, 0x6f, 0x69, 0x6e, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x18, 0x0a,
+	0x07, 0x73, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07,
+	0x73, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x22, 0x2b, 0x0a, 0x0d, 0x53, 0x74, 0x61, 0x74, 0x75,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x6c, 0x61, 0x79,
+	0x65, 0x72, 0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x08, 0x70, 0x6c, 0x61, 0x79,
+	0x65, 0x72, 0x49, 0x44, 0x22, 0x39, 0x0a, 0x0b, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65,
+	0x70, 0x6c, 0x79, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x74,
+	0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22,
+	0x3d, 0x0a, 0x0b, 0x4d, 0x6f, 0x76, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a,
+	0x0a, 0x08, 0x70, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05,
+	0x52, 0x08, 0x70, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x49, 0x44, 0x12, 0x12, 0x0a, 0x04, 0x6d, 0x6f,
+	0x76, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6d, 0x6f, 0x76, 0x65, 0x22, 0x3f,
+	0x0a, 0x09, 0x4d, 0x6f, 0x76, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x18, 0x0a, 0x07, 0x73,
+	0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x73, 0x75,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x32,
+	0xb5, 0x01, 0x0a, 0x06, 0x53, 0x69, 0x67, 0x6e, 0x61, 0x6c, 0x12, 0x2c, 0x0a, 0x0a, 0x4d, 0x61,
+	0x6b, 0x65, 0x41, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x0e, 0x2e, 0x41, 0x63, 0x74, 0x69, 0x6f,
+	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0c, 0x2e, 0x41, 0x63, 0x74, 0x69, 0x6f,
+	0x6e, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x00, 0x12, 0x26, 0x0a, 0x08, 0x4a, 0x6f, 0x69, 0x6e,
+	0x47, 0x61, 0x6d, 0x65, 0x12, 0x0c, 0x2e, 0x4a, 0x6f, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x0a, 0x2e, 0x4a, 0x6f, 0x69, 0x6e, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x00,
+	0x12, 0x2d, 0x0a, 0x0b, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12,
+	0x0e, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x0c, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x00, 0x12,
+	0x26, 0x0a, 0x08, 0x4d, 0x61, 0x6b, 0x65, 0x4d, 0x6f, 0x76, 0x65, 0x12, 0x0c, 0x2e, 0x4d, 0x6f,
+	0x76, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0a, 0x2e, 0x4d, 0x6f, 0x76, 0x65,
+	0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x00, 0x42, 0x11, 0x5a, 0x0f, 0x2e, 0x3b, 0x63, 0x6f, 0x6d,
+	0x6d, 0x75, 0x6e, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (
@@ -390,24 +504,28 @@ func file_communication_proto_rawDescGZIP() []byte {
 	return file_communication_proto_rawDescData
 }
 
-var file_communication_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_communication_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_communication_proto_goTypes = []interface{}{
 	(*ActionRequest)(nil), // 0: ActionRequest
 	(*ActionReply)(nil),   // 1: ActionReply
-	(*StatusRequest)(nil), // 2: StatusRequest
-	(*StatusReply)(nil),   // 3: StatusReply
-	(*MoveRequest)(nil),   // 4: MoveRequest
-	(*MoveReply)(nil),     // 5: MoveReply
+	(*JoinRequest)(nil),   // 2: JoinRequest
+	(*JoinReply)(nil),     // 3: JoinReply
+	(*StatusRequest)(nil), // 4: StatusRequest
+	(*StatusReply)(nil),   // 5: StatusReply
+	(*MoveRequest)(nil),   // 6: MoveRequest
+	(*MoveReply)(nil),     // 7: MoveReply
 }
 var file_communication_proto_depIdxs = []int32{
 	0, // 0: Signal.MakeAction:input_type -> ActionRequest
-	2, // 1: Signal.CheckStatus:input_type -> StatusRequest
-	4, // 2: Signal.MakeMove:input_type -> MoveRequest
-	1, // 3: Signal.MakeAction:output_type -> ActionReply
-	3, // 4: Signal.CheckStatus:output_type -> StatusReply
-	5, // 5: Signal.MakeMove:output_type -> MoveReply
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
+	2, // 1: Signal.JoinGame:input_type -> JoinRequest
+	4, // 2: Signal.CheckStatus:input_type -> StatusRequest
+	6, // 3: Signal.MakeMove:input_type -> MoveRequest
+	1, // 4: Signal.MakeAction:output_type -> ActionReply
+	3, // 5: Signal.JoinGame:output_type -> JoinReply
+	5, // 6: Signal.CheckStatus:output_type -> StatusReply
+	7, // 7: Signal.MakeMove:output_type -> MoveReply
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -444,7 +562,7 @@ func file_communication_proto_init() {
 			}
 		}
 		file_communication_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StatusRequest); i {
+			switch v := v.(*JoinRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -456,7 +574,7 @@ func file_communication_proto_init() {
 			}
 		}
 		file_communication_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StatusReply); i {
+			switch v := v.(*JoinReply); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -468,7 +586,7 @@ func file_communication_proto_init() {
 			}
 		}
 		file_communication_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MoveRequest); i {
+			switch v := v.(*StatusRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -480,6 +598,30 @@ func file_communication_proto_init() {
 			}
 		}
 		file_communication_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*StatusReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_communication_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MoveRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_communication_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MoveReply); i {
 			case 0:
 				return &v.state
@@ -498,7 +640,7 @@ func file_communication_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_communication_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -526,6 +668,7 @@ const _ = grpc.SupportPackageIsVersion6
 type SignalClient interface {
 	// Sends a control message
 	MakeAction(ctx context.Context, in *ActionRequest, opts ...grpc.CallOption) (*ActionReply, error)
+	JoinGame(ctx context.Context, in *JoinRequest, opts ...grpc.CallOption) (*JoinReply, error)
 	CheckStatus(ctx context.Context, in *StatusRequest, opts ...grpc.CallOption) (*StatusReply, error)
 	MakeMove(ctx context.Context, in *MoveRequest, opts ...grpc.CallOption) (*MoveReply, error)
 }
@@ -541,6 +684,15 @@ func NewSignalClient(cc grpc.ClientConnInterface) SignalClient {
 func (c *signalClient) MakeAction(ctx context.Context, in *ActionRequest, opts ...grpc.CallOption) (*ActionReply, error) {
 	out := new(ActionReply)
 	err := c.cc.Invoke(ctx, "/Signal/MakeAction", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *signalClient) JoinGame(ctx context.Context, in *JoinRequest, opts ...grpc.CallOption) (*JoinReply, error) {
+	out := new(JoinReply)
+	err := c.cc.Invoke(ctx, "/Signal/JoinGame", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -569,6 +721,7 @@ func (c *signalClient) MakeMove(ctx context.Context, in *MoveRequest, opts ...gr
 type SignalServer interface {
 	// Sends a control message
 	MakeAction(context.Context, *ActionRequest) (*ActionReply, error)
+	JoinGame(context.Context, *JoinRequest) (*JoinReply, error)
 	CheckStatus(context.Context, *StatusRequest) (*StatusReply, error)
 	MakeMove(context.Context, *MoveRequest) (*MoveReply, error)
 }
@@ -579,6 +732,9 @@ type UnimplementedSignalServer struct {
 
 func (*UnimplementedSignalServer) MakeAction(context.Context, *ActionRequest) (*ActionReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MakeAction not implemented")
+}
+func (*UnimplementedSignalServer) JoinGame(context.Context, *JoinRequest) (*JoinReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method JoinGame not implemented")
 }
 func (*UnimplementedSignalServer) CheckStatus(context.Context, *StatusRequest) (*StatusReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckStatus not implemented")
@@ -605,6 +761,24 @@ func _Signal_MakeAction_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SignalServer).MakeAction(ctx, req.(*ActionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Signal_JoinGame_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(JoinRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SignalServer).JoinGame(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Signal/JoinGame",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SignalServer).JoinGame(ctx, req.(*JoinRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -652,6 +826,10 @@ var _Signal_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MakeAction",
 			Handler:    _Signal_MakeAction_Handler,
+		},
+		{
+			MethodName: "JoinGame",
+			Handler:    _Signal_JoinGame_Handler,
 		},
 		{
 			MethodName: "CheckStatus",

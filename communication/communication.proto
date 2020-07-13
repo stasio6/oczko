@@ -5,6 +5,7 @@ option go_package = ".;communication";
 service Signal {
   // Sends a control message
   rpc MakeAction (ActionRequest) returns (ActionReply) {}
+  rpc JoinGame (JoinRequest) returns (JoinReply) {}
   rpc CheckStatus (StatusRequest) returns (StatusReply) {}
   rpc MakeMove (MoveRequest) returns (MoveReply) {}
 }
@@ -17,6 +18,17 @@ message ActionRequest {
 // The response message containing the greetings.
 message ActionReply {
   string winner = 1;
+}
+
+// The control message containing the action.
+message JoinRequest {
+  string playerName = 1;
+  int32 playerID = 2;
+}
+
+// The response message containing the greetings.
+message JoinReply {
+  bool success = 1;
 }
 
 // The message requesting status.

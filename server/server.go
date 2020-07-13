@@ -23,6 +23,14 @@ func (s *SignalServer) MakeAction(ctx context.Context, request *pb.ActionRequest
 	return &pb.ActionReply{Winner: "Me"}, nil
 }
 
+func (s *SignalServer) JoinGame (ctx context.Context, request *pb.JoinRequest) (*pb.JoinReply, error) {
+	if !s.game.JoinGame(request.PlayerName, int(request.PlayerID)) {
+
+		return &pb.JoinReply{Success: false}, nil
+	}
+	return &pb.JoinReply{Success: true}, nil
+}
+
 func (s *SignalServer) CheckStatus(ctx context.Context, request *pb.StatusRequest) (*pb.StatusReply, error) {
 	fmt.Println("Check status from ", request.PlayerID)
 	var status string
