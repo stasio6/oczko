@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option go_package = ".;communication";
+
+service Signal {
+  // Sends a control message
+  rpc MakeAction (ActionRequest) returns (ActionReply) {}
+  rpc CheckStatus (StatusRequest) returns (StatusReply) {}
+  rpc MakeMove (MoveRequest) returns (MoveReply) {}
+}
+
+// The control message containing the action.
+message ActionRequest {
+  string action = 1;
+}
+
+// The response message containing the greetings.
+message ActionReply {
+  string winner = 1;
+}
+
+// The message requesting status.
+message StatusRequest {
+  int32 playerID = 1;
+}
+
+// The response message containing the status.
+message StatusReply {
+  string status = 1;
+  int32 type = 2;
+}
+
+// The message containing the move.
+message MoveRequest {
+  int32 playerID = 1;
+  string move = 2;
+}
+
+// The response message containing info about success.
+message MoveReply {
+  bool success = 1;
+  string message = 2;
+}
