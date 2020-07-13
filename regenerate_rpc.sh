@@ -1,0 +1,1 @@
+protoc -I communication communication/communication.proto --go_out=plugins=grpc:communication
